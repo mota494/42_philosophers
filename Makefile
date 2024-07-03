@@ -1,7 +1,7 @@
 #compile
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -pthread
 SRC = sources/error_handle.c sources/main.c sources/utils.c sources/printable.c
 #commands
 RM = rm -rf

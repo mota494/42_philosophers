@@ -1,4 +1,5 @@
 #include <pthread.h>
+#include <bits/pthreadtypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -7,11 +8,12 @@
 
 typedef struct s_philos
 {
-	int	n_philos;
-	int	t_die;
-	int	t_eat;
-	int	t_sleep;
-	int	n_must_eat;
+	pthread_t	*threads;
+	int			n_philos;
+	int			t_die;
+	int			t_eat;
+	int			t_sleep;
+	int			n_must_eat;
 }		t_philos;
 
 /*main.c*/
