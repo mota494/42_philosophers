@@ -6,14 +6,18 @@
 #include "includes/42_libft/libft.h"
 #include "includes/42_ftprintf/ft_printf/ft_printf.h"
 
-typedef struct s_philos
+typedef	struct s_data
 {
-	pthread_t	*threads;
 	int			n_philos;
 	int			t_die;
 	int			t_eat;
 	int			t_sleep;
 	int			n_must_eat;
+}	t_data;
+typedef struct s_philos
+{
+	pthread_t	*threads;
+	t_data		data;
 }		t_philos;
 
 /*main.c*/

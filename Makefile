@@ -2,7 +2,7 @@
 NAME = philo
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -pthread
-SRC = sources/error_handle.c sources/main.c sources/utils.c sources/printable.c
+SRC = sources/error_handle.c sources/main.c sources/utils.c
 #commands
 RM = rm -rf
 OBJ = $(SRC:.c=.o)
@@ -10,8 +10,7 @@ OBJ = $(SRC:.c=.o)
 LIBFT = includes/42_libft/libft.a
 PRINTF = includes/42_ftprintf/ft_printf/libftprintf.a
 
-%.o : %.c
-	$(CC) $(CFLAGS) -c $*.c -o $*.o
+%.o : %.cJa agora
 
 all: $(NAME)
 
