@@ -30,7 +30,7 @@ typedef	struct s_data
 	int			n_must_eat;
 	int			sim_start;
 	t_fork		*forks;
-	t_philos	*philo
+	t_philos	*philo;
 }	t_data;
 
 /*main.c*/
