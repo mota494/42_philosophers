@@ -50,3 +50,5 @@ void	*ret_malloc(size_t bytes);
 void	mutex_handle(pthread_mutex_t *mtx, int opt);
 /*init.c*/
 void	init(t_data *data);
+/*debug.c*/
+void    print_all(t_data *data, t_fork *forks, t_philos *philo);
