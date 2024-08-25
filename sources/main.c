@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 16:31:35 by mloureir          #+#    #+#             */
-/*   Updated: 2024/08/23 21:44:28 by miguel           ###   ########.fr       */
+/*   Updated: 2024/08/25 18:16:43 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int	main(int argc, char **argv)
 	if (argc < 5 || argc > 6 || err_check(argc, argv) == 0)
 		err_exit();
 	pass_args(argc, argv, &data);
-	
+	init(&data);
 	return (0);
 }

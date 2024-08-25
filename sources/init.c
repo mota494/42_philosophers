@@ -1,42 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handle.c                                     :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/02 15:43:51 by mloureir          #+#    #+#             */
-/*   Updated: 2024/08/25 18:07:57 by miguel           ###   ########.fr       */
+/*   Created: 2024/08/25 16:52:06 by miguel            #+#    #+#             */
+/*   Updated: 2024/08/25 18:23:03 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	err_code(int i)
+void    init(t_data *data)
 {
-	if (i == 1)
-		ft_putstr_fd("Malloc error\n", 2);
-	else if (i == 2)
-		ft_putstr_fd("Mutex error\n", 2);
-	exit(0);
-}
+    int i;
 
-void	err_exit(void)
-{
-	ft_putstr_fd("Input error\n", 2);
-	exit (0);
-}
-
-int	err_check(int ac, char **av)
-{
-	int	i;
-
-	i = 1;
-	while (i < ac)
-	{
-		if (strdigit(av[i]) != 1)
-			return (0);
-		i++;
-	}
-	return (1);
+    i = 0;
+    data->sim_end = 0;
+    data->philo = ret_malloc(sizeof(t_philos) * data->n_philos);
+    data->forks = ret_malloc(sizeof(t_fork) * data->n_philos);
+    while (i < data->n_philos)
+    {
+        mutex_handle(&data->forks[i].fork, M_INIT);
+        i++;
+    }
 }
