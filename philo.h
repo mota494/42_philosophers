@@ -42,6 +42,7 @@ typedef	struct s_data
 int		main(int argc, char **argv);
 /*error_handle.c*/
 void	err_exit(void);
+void	free_exit(t_data *data);
 int		err_check(int ac, char **av);
 void	err_code(int i);
 /*utils.c*/
@@ -51,5 +52,6 @@ void	mutex_handle(pthread_mutex_t *mtx, int opt);
 /*init.c*/
 void	init(t_data *data);
 /*debug.c*/
-void    print_all(t_data *data, t_fork *forks, t_philos *philo);
+void    print_all(t_data *d, t_fork *f, t_philos *p);
 /*sim.c*/
+void    sim_start(t_data *data);

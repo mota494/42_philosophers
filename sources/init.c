@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:52:06 by miguel            #+#    #+#             */
-/*   Updated: 2024/08/25 21:35:06 by miguel           ###   ########.fr       */
+/*   Updated: 2024/08/26 21:18:43 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,4 @@ void    init(t_data *data)
     data->forks = ret_malloc(sizeof(t_fork) * data->n_philos);
     mutex_init(data);
     threads_init(data);
-    print_all(data, data->forks, data->philo);
 }

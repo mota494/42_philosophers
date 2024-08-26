@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 16:31:35 by mloureir          #+#    #+#             */
-/*   Updated: 2024/08/25 18:16:43 by miguel           ###   ########.fr       */
+/*   Updated: 2024/08/26 21:13:27 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int	main(int argc, char **argv)
 		err_exit();
 	pass_args(argc, argv, &data);
 	init(&data);
+	sim_start(&data);
 	return (0);
 }

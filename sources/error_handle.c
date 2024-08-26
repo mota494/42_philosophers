@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:43:51 by mloureir          #+#    #+#             */
-/*   Updated: 2024/08/25 18:07:57 by miguel           ###   ########.fr       */
+/*   Updated: 2024/08/26 21:17:15 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ void	err_exit(void)
 {
 	ft_putstr_fd("Input error\n", 2);
 	exit (0);
+}
+
+void	free_exit(t_data *data)
+{
+	free(data->forks);
+	free(data->philo);
 }
 
 int	err_check(int ac, char **av)

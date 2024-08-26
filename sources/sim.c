@@ -6,8 +6,14 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 21:35:51 by miguel            #+#    #+#             */
-/*   Updated: 2024/08/25 21:36:01 by miguel           ###   ########.fr       */
+/*   Updated: 2024/08/26 21:18:12 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+void    sim_start(t_data *data)
+{
+    if (data->n_must_eat != -1 && data->n_must_eat <= 0)
+        free_exit(data);
+}
