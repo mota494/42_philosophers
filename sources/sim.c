@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 21:35:51 by miguel            #+#    #+#             */
-/*   Updated: 2024/08/26 22:39:52 by miguel           ###   ########.fr       */
+/*   Updated: 2024/08/27 23:49:37 by miguel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void    one_philo(t_data *data)
     
 }
 
-void    simulation(t_data *data)
+void    *simulation(void *data)
 {
-    
+    return (NULL);
 }
 
 void    thread_create(t_data *data)
@@ -29,7 +29,7 @@ void    thread_create(t_data *data)
     i = 0;
     while (i < data->n_philos)
     {
-        pthread_create(&data->philo[i].thread, NULL, &simulation, data);
+        pthread_create(data->philo[i].thread, NULL, &simulation, data);
         i++;
     }
 }
