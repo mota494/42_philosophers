@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:42:18 by mloureir          #+#    #+#             */
-/*   Updated: 2024/08/25 18:08:05 by miguel           ###   ########.fr       */
+/*   Updated: 2024/09/08 15:10:46 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,15 @@ void	mutex_handle(pthread_mutex_t *mtx, int opt)
 		pthread_mutex_destroy(mtx);
 	else
 		err_code(2); 
+}
+
+void	sync_threads(t_data *data)
+{
+	while(!get_bool(&data->data_mutex, &data->sync))
+		;
+}
+
+bool	sim_finish(t_data *data)
+{
+	return (get_bool(&data->data_mutex, &data->sim_end));
 }

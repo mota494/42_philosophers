@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mloureir <mloureir@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/08 13:59:28 by mloureir          #+#    #+#             */
+/*   Updated: 2024/09/08 15:20:59 by mloureir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/time.h>
+#include <stdbool.h>
 #include "includes/42_libft/libft.h"
 #include "includes/42_ftprintf/ft_printf/ft_printf.h"
 #define M_INIT 1
@@ -18,8 +31,8 @@ typedef struct s_philos
 {
 	int			p_id;
 	int			count_meal;
-	int			full;
-	int			time_l_meal;
+	bool		full;
+	long		time_l_meal;
 	t_fork		*lfork;
 	t_fork		*rfork;
 	pthread_t	*thread;
@@ -27,15 +40,18 @@ typedef struct s_philos
 
 typedef	struct s_data
 {
-	int			n_philos;
-	int			t_die;
-	int			t_eat;
-	int			t_sleep;
-	int			n_must_eat;
-	int			sim_start;
-	int			sim_end;
-	t_fork		*forks;
-	t_philos	*philo;
+	long 			n_philos;
+	long 			t_die;
+	long			t_eat;
+	long 			t_sleep;
+	long 			n_must_eat;
+	long			sim_start;
+	bool			sim_end;
+    bool			sync;
+    pthread_mutex_t data_mutex;
+	pthread_mutex_t write_mutex;
+	t_fork			*forks;
+	t_philos		*philo;
 }	t_data;
 
 /*main.c*/
@@ -49,9 +65,22 @@ void	err_code(int i);
 int		strdigit(char *str);
 void	*ret_malloc(size_t bytes);
 void	mutex_handle(pthread_mutex_t *mtx, int opt);
+void	sync_threads(t_data *data);
+bool	sim_finish(t_data *data);
 /*init.c*/
 void	init(t_data *data);
 /*debug.c*/
 void    print_all(t_data *d, t_fork *f, t_philos *p);
 /*sim.c*/
 void    sim_start(t_data *data);
+/*utils2.c*/
+void	set_bool(pthread_mutex_t *mutex, bool *dest, bool value);
+bool	get_bool(pthread_mutex_t *mutex, bool *value);
+void	set_long(pthread_mutex_t *mutex, long *dest, long value);
+bool	get_long(pthread_mutex_t *mutex, long *value);
+long	chrono();
+/*actions.c*/
+int 	eatin(t_data *data);
+int 	sleep(t_data *data);
+int 	think(t_data *data);
+void	write_status(int status, t_data *data);

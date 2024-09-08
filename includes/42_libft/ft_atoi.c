@@ -6,15 +6,15 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:43:40 by mloureir          #+#    #+#             */
-/*   Updated: 2023/10/09 10:16:04 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/08 14:34:55 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *nptr)
+long    ft_atoi(const char *nptr)
 {
-	int	toreturn;
-	int	index;
-	int	pos;
+	long	toreturn;
+	long	index;
+	long	pos;
 
 	toreturn = 0;
 	index = 0;

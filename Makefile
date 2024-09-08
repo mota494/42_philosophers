@@ -2,7 +2,7 @@
 NAME = philo
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -pthread
-SRC = sources/error_handle.c sources/main.c sources/utils.c sources/init.c sources/debug.c sources/sim.c
+SRC = sources/error_handle.c sources/main.c sources/utils.c sources/utils2.c sources/init.c sources/debug.c sources/sim.c sources/actions.c
 #commands
 RM = rm -rf
 OBJ = $(SRC:.c=.o)
