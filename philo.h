@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 13:59:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/08 15:33:18 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:44:34 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef	struct s_fork
 	int				f_id;
 	pthread_mutex_t	fork;
 }		t_fork;
+
 typedef struct s_philos
 {
 	int			p_id;
@@ -41,6 +42,7 @@ typedef struct s_philos
 	long		time_l_meal;
 	t_fork		*lfork;
 	t_fork		*rfork;
+	pthread_mutex_t philo_mutex;
 	pthread_t	*thread;
 }		t_philos;
 
@@ -90,3 +92,5 @@ int 	eatin(t_data *data);
 int 	sleep(t_data *data);
 int 	think(t_data *data);
 void	write_status(int status, t_data *data);
+/*utils3.c*/
+size_t	ft_usleep(size_t time);

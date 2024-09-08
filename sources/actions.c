@@ -6,11 +6,25 @@
 /*   By: mloureir <mloureir@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 15:12:43 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/08 15:32:47 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:46:30 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+int 	eat(t_data *data)
+{
+	mutex_handle(&data->philo->lfork->fork, M_LOCK);
+	write_status(P_FORK, data);
+	mutex_handle(&data->philo->rfork->fork, M_LOCK);
+	write_status(P_FORK, data);
+	set_long(&data->philo->philo_mutex, &data->philo->time_l_meal, chrono());
+	data->philo->count_meal++;
+	write_status(P_EATING, data);
+	ft_usleep(data->t_eat);
+	if (data->n_must_eat == data->philo->count_meal)
+		set_bool(&data->philo->philo_mutex, &data->philo->full, true);
+}
 
 void	write_status(int status, t_data *data)
 {

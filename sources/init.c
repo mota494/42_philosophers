@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:52:06 by miguel            #+#    #+#             */
-/*   Updated: 2024/09/08 15:19:47 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:40:43 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void    threads_init(t_data *data)
         data->philo[i].p_id = i;
         data->philo[i].full = 0;
         data->philo[i].count_meal = 0;
+		mutex_handle(&data->philo[i].philo_mutex, M_INIT);
         give_fork(data->philo, data->forks, i, data->n_philos);
         i++;
     }
