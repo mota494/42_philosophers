@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 13:59:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/08 15:20:59 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:33:18 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@
 #define	M_DESTROY 2
 #define	M_LOCK 3
 #define	M_UNLOCK 4
+#define P_FORK 1
+#define P_EATING 2
+#define P_SLEEP 3
+#define P_THINK 4
+#define P_DEAD 5
+
 typedef	struct s_fork
 {
 	int				f_id;

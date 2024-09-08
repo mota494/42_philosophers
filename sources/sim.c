@@ -6,7 +6,7 @@
 /*   By: miguel <miguel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 21:35:51 by miguel            #+#    #+#             */
-/*   Updated: 2024/09/08 15:17:28 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:34:08 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void    *simulation(void *data)
 	{
 		if (a_data->philo->full)
 			break;
+		write_status(P_SLEEP, data);
 	}
     return (NULL);
 }
