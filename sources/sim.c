@@ -20,8 +20,6 @@ void	*simulation(void *data)
 	sync_threads(a_data);
 	while (!sim_finish(a_data->data))
 	{
-		if (a_data->full)
-			break ;
 		grab_fork(a_data);
 		eatin(a_data);
 		write_status(P_SLEEP, data);

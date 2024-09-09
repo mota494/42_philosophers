@@ -25,6 +25,7 @@ typedef struct s_data
 	long			n_philos;
 	long			t_die;
 	long			t_eat;
+	int				a_eat;
 	long			t_sleep;
 	long			n_must_eat;
 	long			sim_start;

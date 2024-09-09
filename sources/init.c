@@ -53,8 +53,9 @@ void	threads_init(t_data *data)
 
 void	init(t_data *data)
 {
-	data->sim_end = 0;
+	data->sim_end = false;
 	data->sync = false;
+	data->a_eat = 0;
 	data->philo = ret_calloc(data->n_philos, sizeof(t_philos));
 	data->forks = ret_calloc(data->n_philos, sizeof(t_data));
 	mutex_handle(&data->data_mutex, M_INIT);
