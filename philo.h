@@ -10,41 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pthread.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/time.h>
-#include <stdbool.h>
-#include "includes/42_libft/libft.h"
-#include "includes/42_ftprintf/ft_printf/ft_printf.h"
-#define M_INIT 1
-#define M_DESTROY 2
-#define M_LOCK 3
-#define M_UNLOCK 4
-#define P_FORK 1
-#define P_EATING 2
-#define P_SLEEP 3
-#define P_THINK 4
-#define P_DEAD 5
+#include "constants.h"
 
 typedef struct s_fork
 {
 	int				f_id;
 	pthread_mutex_t	fork;
 }		t_fork;
-
-typedef struct s_philos
-{
-	int			p_id;
-	int			count_meal;
-	bool		full;
-	long		time_l_meal;
-	t_fork		*lfork;
-	t_fork		*rfork;
-	pthread_mutex_t	philo_mutex;
-	pthread_t	thread;
-}		t_philos;
 
 typedef struct s_data
 {
@@ -59,8 +31,21 @@ typedef struct s_data
 	pthread_mutex_t	data_mutex;
 	pthread_mutex_t	write_mutex;
 	t_fork			*forks;
-	t_philos		*philo;
+	struct s_philos		*philo;
 }	t_data;
+
+typedef struct s_philos
+{
+	int			p_id;
+	int			count_meal;
+	bool		full;
+	long		time_l_meal;
+	t_fork		*lfork;
+	t_fork		*rfork;
+	pthread_mutex_t	philo_mutex;
+	pthread_t	thread;
+	t_data		*data;
+}		t_philos;
 
 /*main.c*/
 int		main(int argc, char **argv);
@@ -73,7 +58,7 @@ void	err_code(int i);
 int		strdigit(char *str);
 void	*ret_calloc(size_t nmemb, size_t size);
 void	mutex_handle(pthread_mutex_t *mtx, int opt);
-void	sync_threads(t_data *data);
+void	sync_threads(t_philos *data);
 bool	sim_finish(t_data *data);
 /*init.c*/
 void	init(t_data *data);
@@ -88,9 +73,11 @@ void	set_long(pthread_mutex_t *mutex, long *dest, long value);
 bool	get_long(pthread_mutex_t *mutex, long *value);
 long	chrono(void);
 /*actions.c*/
-int		eatin(t_data *d);
-int		sleepin(t_data *d);
-int		think(t_data *d);
-void	write_status(int status, t_data *data);
+int		grab_fork(t_philos *d);
+int		eatin(t_philos *d);
+int		sleepin(t_philos *d);
+int		think(t_philos *d);
+void	write_status(int status, t_philos *data);
 /*utils3.c*/
 size_t	ft_usleep(size_t time);
+void	drop_fork(t_philos *data);

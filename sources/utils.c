@@ -50,9 +50,9 @@ void	mutex_handle(pthread_mutex_t *mtx, int opt)
 		err_code(2);
 }
 
-void	sync_threads(t_data *data)
+void	sync_threads(t_philos *data)
 {
-	while (!get_bool(&data->data_mutex, &data->sync))
+	while (get_bool(&data->data->data_mutex, &data->data->sync) != true)
 		;
 }
 

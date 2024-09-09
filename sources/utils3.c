@@ -21,3 +21,17 @@ size_t	ft_usleep(size_t time)
 		usleep(time * 1e3);
 	return (0);
 }
+
+void	drop_fork(t_philos *data)
+{
+	if (data->p_id % 2 == 0)
+	{
+		mutex_handle(&data->rfork->fork, M_UNLOCK);
+		mutex_handle(&data->lfork->fork, M_UNLOCK);
+	}
+	else
+	{
+		mutex_handle(&data->lfork->fork, M_UNLOCK);
+		mutex_handle(&data->rfork->fork, M_UNLOCK);
+	}
+}

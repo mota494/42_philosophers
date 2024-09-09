@@ -14,15 +14,18 @@
 
 void	*simulation(void *data)
 {
-	t_data	*a_data;
+	t_philos	*a_data;
 
-	a_data = (t_data *)data;
-	sync_threads(data);
-	while (!sim_finish(a_data))
+	a_data = (t_philos *)data;
+	sync_threads(a_data);
+	while (!sim_finish(a_data->data))
 	{
-		if (a_data->philo->full)
+		if (a_data->full)
 			break ;
+		grab_fork(a_data);
+		eatin(a_data);
 		write_status(P_SLEEP, data);
+		ft_usleep(a_data->data->t_sleep);
 	}
 	return (NULL);
 }
@@ -34,7 +37,8 @@ void	thread_create(t_data *data)
 	i = 0;
 	while (i < data->n_philos)
 	{
-		pthread_create(&data->philo[i].thread, NULL, &simulation, data);
+		pthread_create(&data->philo[i].thread, NULL, &simulation,
+			&data->philo[i]);
 		i++;
 	}
 }

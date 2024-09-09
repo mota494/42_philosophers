@@ -44,6 +44,7 @@ void	threads_init(t_data *data)
 		data->philo[i].p_id = i;
 		data->philo[i].full = 0;
 		data->philo[i].count_meal = 0;
+		data->philo[i].data = data;
 		mutex_handle(&data->philo[i].philo_mutex, M_INIT);
 		give_fork(data->philo, data->forks, i, data->n_philos);
 		i++;
