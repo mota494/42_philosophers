@@ -35,3 +35,22 @@ void	drop_fork(t_philos *data)
 		mutex_handle(&data->rfork->fork, M_UNLOCK);
 	}
 }
+
+int	grab_fork(t_philos *d)
+{
+	if (d->p_id % 2 == 0)
+	{
+		mutex_handle(&d->rfork->fork, M_LOCK);
+		write_status(P_FORK, d);
+		mutex_handle(&d->lfork->fork, M_LOCK);
+		write_status(P_FORK, d);
+	}
+	else
+	{
+		mutex_handle(&d->lfork->fork, M_LOCK);
+		write_status(P_FORK, d);
+		mutex_handle(&d->rfork->fork, M_LOCK);
+		write_status(P_FORK, d);
+	}
+	return (1);
+}

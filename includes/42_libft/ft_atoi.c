@@ -6,11 +6,11 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:43:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/08 14:34:55 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/09 12:37:33 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-long    ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
 	long	toreturn;
 	long	index;

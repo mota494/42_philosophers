@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 13:59:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/08 15:44:34 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/09 12:30:14 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "constants.h"
+
+typedef pthread_mutex_t	t_mutex;
 
 typedef struct s_fork
 {
@@ -28,10 +30,10 @@ typedef struct s_data
 	long			sim_start;
 	bool			sim_end;
 	bool			sync;
-	pthread_mutex_t	data_mutex;
-	pthread_mutex_t	write_mutex;
+	t_mutex			data_mutex;
+	t_mutex			write_mutex;
 	t_fork			*forks;
-	struct s_philos		*philo;
+	struct s_philos	*philo;
 }	t_data;
 
 typedef struct s_philos
@@ -42,7 +44,7 @@ typedef struct s_philos
 	long		time_l_meal;
 	t_fork		*lfork;
 	t_fork		*rfork;
-	pthread_mutex_t	philo_mutex;
+	t_mutex		philo_mutex;
 	pthread_t	thread;
 	t_data		*data;
 }		t_philos;

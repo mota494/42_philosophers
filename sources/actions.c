@@ -12,25 +12,6 @@
 
 #include "../philo.h"
 
-int	grab_fork(t_philos *d)
-{
-	if (d->p_id % 2 == 0)
-	{
-		mutex_handle(&d->rfork->fork, M_LOCK);
-		write_status(P_FORK, d);
-		mutex_handle(&d->lfork->fork, M_LOCK);
-		write_status(P_FORK, d);
-	}
-	else
-	{
-		mutex_handle(&d->lfork->fork, M_LOCK);
-		write_status(P_FORK, d);
-		mutex_handle(&d->rfork->fork, M_LOCK);
-		write_status(P_FORK, d);
-	}
-	return (1);
-}
-
 int	eatin(t_philos *d)
 {
 	set_long(&d->philo_mutex, &d->time_l_meal, chrono());
@@ -54,7 +35,8 @@ void	write_status(int status, t_philos *d)
 	else
 	{
 		if (status == P_FORK)
-			printf("%s%zu%s %d has taken a fork\n", F, time, N, d->p_id);
+			printf("%s%zu%s %d has taken a fork\n", F, time, N,
+				d->p_id);
 		else if (status == P_EATING)
 			printf("%s%zu%s %d is eating\n", F, time, N, d->p_id);
 		else if (status == P_SLEEP)
