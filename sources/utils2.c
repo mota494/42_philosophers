@@ -12,21 +12,22 @@
 
 #include "../philo.h"
 
- void	set_bool(pthread_mutex_t *mutex, bool *dest, bool value)
- {
-	 mutex_handle(mutex, M_LOCK);
-	 *dest = value;
-	 mutex_handle(mutex, M_UNLOCK);
- }
+void	set_bool(pthread_mutex_t *mutex, bool *dest, bool value)
+{
+	mutex_handle(mutex, M_LOCK);
+	*dest = value;
+	mutex_handle(mutex, M_UNLOCK);
+}
 
- bool	get_bool(pthread_mutex_t *mutex, bool *value)
- {
-	 bool	toret;
-	 mutex_handle(mutex, M_LOCK);
-	 toret = *value;
-	 mutex_handle(mutex, M_UNLOCK);
- 	return (toret);
- }
+bool	get_bool(pthread_mutex_t *mutex, bool *value)
+{
+	bool	toret;
+
+	mutex_handle(mutex, M_LOCK);
+	toret = *value;
+	mutex_handle(mutex, M_UNLOCK);
+	return (toret);
+}
 
 void	set_long(pthread_mutex_t *mutex, long *dest, long value)
 {
@@ -38,15 +39,17 @@ void	set_long(pthread_mutex_t *mutex, long *dest, long value)
 bool	get_long(pthread_mutex_t *mutex, long *value)
 {
 	long	toret;
+
 	mutex_handle(mutex, M_LOCK);
 	toret = *value;
 	mutex_handle(mutex, M_UNLOCK);
 	return (toret);
 }
 
-long	chrono()
+long	chrono(void)
 {
-	struct	timeval	time;
+	struct timeval	time;
+
 	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }

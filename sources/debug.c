@@ -12,22 +12,23 @@
 
 #include "../philo.h"
 
-void    print_all(t_data *d, t_fork *f, t_philos *p)
+void	print_all(t_data *d, t_fork *f, t_philos *p)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(i < d->n_philos)
-    {
-        ft_printf("| [%d] & %p |", f[i].f_id, &f[i]);
-        i++;
-    }
-    i = 0;
-    ft_printf("\n--------------------\n");
-    while(i < d->n_philos)
-    {
-        ft_printf("| [%d] & %p & %p |", p[i].p_id, p[i].lfork, p[i].rfork);
-        i++;
-    }
-    ft_printf("\n--------------------\n");
+	i = 0;
+	while (i < d->n_philos)
+	{
+		ft_printf("| [%d] & %p |", f[i].f_id, &f[i]);
+		i++;
+	}
+	i = 0;
+	ft_printf("\n--------------------\n");
+	while (i < d->n_philos)
+	{
+		ft_printf("| [%d] & %p & %p |", p[i].p_id,
+			p[i].lfork, p[i].rfork);
+		i++;
+	}
+	ft_printf("\n--------------------\n");
 }

@@ -26,11 +26,11 @@ int	strdigit(char *str)
 	return (1);
 }
 
-void	*ret_malloc(size_t bytes)
+void	*ret_calloc(size_t nmemb, size_t size)
 {
 	void	*ret;
 
-	ret = malloc(bytes);
+	ret = ft_calloc(nmemb, size);
 	if (!ret)
 		err_code(1);
 	return (ret);
@@ -47,12 +47,12 @@ void	mutex_handle(pthread_mutex_t *mtx, int opt)
 	else if (opt == M_DESTROY)
 		pthread_mutex_destroy(mtx);
 	else
-		err_code(2); 
+		err_code(2);
 }
 
 void	sync_threads(t_data *data)
 {
-	while(!get_bool(&data->data_mutex, &data->sync))
+	while (!get_bool(&data->data_mutex, &data->sync))
 		;
 }
 
