@@ -24,6 +24,7 @@ void	*simulation(void *data)
 		eatin(a_data);
 		write_status(P_SLEEP, data);
 		ft_usleep(a_data->data->t_sleep);
+		write_status(P_THINK, data);
 	}
 	return (NULL);
 }
@@ -39,6 +40,7 @@ void	thread_create(t_data *data)
 			&data->philo[i]);
 		i++;
 	}
+	pthread_create(&data->checker, NULL, &philo_check, data);
 }
 
 void	join_threads(t_data *data)

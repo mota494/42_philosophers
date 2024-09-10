@@ -14,16 +14,23 @@
 
 int	eatin(t_philos *d)
 {
-	set_long(&d->philo_mutex, &d->time_l_meal, chrono());
 	mutex_handle(&d->data->data_mutex, M_LOCK);
+	if (d->data->a_eat == d->data->n_philos)
+	{
+		mutex_handle(&d->data->data_mutex, M_UNLOCK);
+		drop_fork(d);
+		return (1);
+	}
+	mutex_handle(&d->data->data_mutex, M_UNLOCK);
+	set_long(&d->philo_mutex, &d->time_l_meal, chrono());
+	mutex_handle(&d->philo_mutex, M_LOCK);
 	d->count_meal++;
 	write_status(P_EATING, d);
+	mutex_handle(&d->philo_mutex, M_UNLOCK);
+	mutex_handle(&d->data->data_mutex, M_LOCK);
 	ft_usleep(d->data->t_eat);
 	if (d->data->n_must_eat == d->count_meal)
-	{
-		set_bool(&d->philo_mutex, &d->full, true);
 		d->data->a_eat += 1;
-	}
 	mutex_handle(&d->data->data_mutex, M_UNLOCK);
 	drop_fork(d);
 	return (1);

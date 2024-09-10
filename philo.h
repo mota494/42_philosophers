@@ -22,10 +22,10 @@ typedef struct s_fork
 
 typedef struct s_data
 {
+	int				a_eat;
 	long			n_philos;
 	long			t_die;
 	long			t_eat;
-	int				a_eat;
 	long			t_sleep;
 	long			n_must_eat;
 	long			sim_start;
@@ -33,7 +33,9 @@ typedef struct s_data
 	bool			sync;
 	t_mutex			data_mutex;
 	t_mutex			write_mutex;
+	t_mutex			checker_mutex;
 	t_fork			*forks;
+	pthread_t		checker;
 	struct s_philos	*philo;
 }	t_data;
 
@@ -84,3 +86,5 @@ void	write_status(int status, t_philos *data);
 /*utils3.c*/
 size_t	ft_usleep(size_t time);
 void	drop_fork(t_philos *data);
+/*philo_check.c*/
+void	*philo_check(void *data);
