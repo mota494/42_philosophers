@@ -20,11 +20,14 @@ void	*simulation(void *data)
 	sync_threads(a_data);
 	while (!sim_finish(a_data->data))
 	{
-		grab_fork(a_data);
-		eatin(a_data);
-		write_status(P_SLEEP, data);
-		ft_usleep(a_data->data->t_sleep);
-		write_status(P_THINK, data);
+		if (grab_fork(a_data) == 0)
+			return (NULL);
+		if (eatin(a_data) == 0)
+			return (NULL);
+		if (sleepin(a_data) == 0)
+			return (NULL);
+		if (think(a_data) == 0)
+			return (NULL);
 	}
 	return (NULL);
 }
@@ -53,6 +56,7 @@ void	join_threads(t_data *data)
 		pthread_join(data->philo[i].thread, NULL);
 		i++;
 	}
+	pthread_join(data->checker, NULL);
 }
 
 void	sim_start(t_data *data)

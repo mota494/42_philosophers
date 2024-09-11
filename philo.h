@@ -31,6 +31,7 @@ typedef struct s_data
 	long			sim_start;
 	bool			sim_end;
 	bool			sync;
+	bool			dead;
 	t_mutex			data_mutex;
 	t_mutex			write_mutex;
 	t_mutex			checker_mutex;
