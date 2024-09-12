@@ -52,7 +52,6 @@ typedef struct s_philos
 	pthread_t	thread;
 	t_data		*data;
 }		t_philos;
-
 /*main.c*/
 int		main(int argc, char **argv);
 /*error_handle.c*/

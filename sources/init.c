@@ -54,12 +54,13 @@ void	threads_init(t_data *data)
 
 void	init(t_data *data)
 {
+	data->philo = ret_calloc(data->n_philos, sizeof(t_data));
+	data->forks = ret_calloc(data->n_philos, sizeof(t_fork));
 	data->sim_end = false;
 	data->sync = false;
 	data->dead = false;
 	data->a_eat = 0;
-	data->philo = ret_calloc(data->n_philos, sizeof(t_philos));
-	data->forks = ret_calloc(data->n_philos, sizeof(t_data));
+	data->sim_start = chrono();
 	mutex_handle(&data->checker_mutex, M_INIT);
 	mutex_handle(&data->data_mutex, M_INIT);
 	mutex_handle(&data->write_mutex, M_INIT);

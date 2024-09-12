@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../philo.h"
-#include <stdio.h>
 
 int	eatin(t_philos *d)
 {
@@ -27,12 +26,12 @@ int	eatin(t_philos *d)
 	d->time_l_meal = chrono();
 	d->count_meal++;
 	write_status(P_EATING, d);
-	mutex_handle(&d->philo_mutex, M_UNLOCK);
-	ft_usleep(d->data->t_eat);
 	mutex_handle(&d->data->data_mutex, M_LOCK);
 	if (d->data->n_must_eat == d->count_meal)
 		d->data->a_eat += 1;
 	mutex_handle(&d->data->data_mutex, M_UNLOCK);
+	mutex_handle(&d->philo_mutex, M_UNLOCK);
+	ft_usleep(d->data->t_eat);
 	drop_fork(d);
 	return (1);
 }

@@ -35,7 +35,7 @@ int	check_if_dead(t_data *data)
 	{
 		mutex_handle(&data->philo[i].philo_mutex, M_LOCK);
 		curt = chrono() - data->philo[i].time_l_meal;
-		if (curt >= data->t_die)
+		if (curt > data->t_die + 2)
 		{
 			mutex_handle(&data->philo[i].philo_mutex, M_UNLOCK);
 			mutex_handle(&data->checker_mutex, M_UNLOCK);

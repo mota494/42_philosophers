@@ -18,6 +18,13 @@ void	*simulation(void *data)
 
 	a_data = (t_philos *)data;
 	sync_threads(a_data);
+	if (a_data->data->n_philos == 1)
+	{
+		mutex_handle(&a_data->lfork->fork, M_LOCK);
+		write_status(1, a_data);
+		mutex_handle(&a_data->lfork->fork, M_UNLOCK);
+		return (NULL);
+	}
 	while (!sim_finish(a_data->data))
 	{
 		if (grab_fork(a_data) == 0)
@@ -63,11 +70,8 @@ void	sim_start(t_data *data)
 {
 	if (data->n_must_eat != -1 && data->n_must_eat <= 0)
 		free_exit(data);
-	else if (data->n_philos == 1)
-		ft_printf("one_philo yippie");
 	else
 		thread_create(data);
-	data->sim_start = chrono();
 	set_bool(&data->data_mutex, &data->sync, true);
 	join_threads(data);
 }

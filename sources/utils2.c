@@ -50,8 +50,6 @@ long	chrono(void)
 {
 	struct timeval	time;
 
-	time.tv_usec = 0;
-	time.tv_sec = 0;
 	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
