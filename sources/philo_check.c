@@ -30,25 +30,21 @@ int	check_if_dead(t_data *data)
 	int		i;
 
 	i = 0;
-	mutex_handle(&data->checker_mutex, M_LOCK);
 	while (i < data->n_philos)
 	{
 		mutex_handle(&data->philo[i].philo_mutex, M_LOCK);
 		curt = chrono() - data->philo[i].time_l_meal;
-		if (curt > data->t_die + 2)
+		if (curt > data->t_die + 1)
 		{
 			mutex_handle(&data->philo[i].philo_mutex, M_UNLOCK);
-			mutex_handle(&data->checker_mutex, M_UNLOCK);
 			write_status(P_DEAD, &data->philo[i]);
 			data->dead = true;
 			return (0);
 		}
 		mutex_handle(&data->philo[i].philo_mutex, M_UNLOCK);
-		mutex_handle(&data->checker_mutex, M_UNLOCK);
 		i++;
 	}
 	mutex_handle(&data->philo[i].philo_mutex, M_UNLOCK);
-	mutex_handle(&data->checker_mutex, M_UNLOCK);
 	return (1);
 }
 
