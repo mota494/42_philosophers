@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 	if (argc < 5 || argc > 6 || err_check(argc, argv) == 0)
 		err_exit();
 	pass_args(argc, argv, &data);
-	if (data.n_philos <= 0)
+	if (data.n_philos <= 0 || data.n_must_eat == 0)
 		err_exit();
 	init(&data);
 	sim_start(&data);
